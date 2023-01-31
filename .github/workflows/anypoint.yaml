@@ -1,0 +1,23 @@
+name: Publish into Anypoint
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+      - run: npm install -g api-catalog-cli@latest
+      - run: api-catalog create-descriptor
+      - run: api-catalog publish-asset -d catalog.yaml --host=anypoint.mulesoft.com --organization=${{ secrets.ANYPOINT_ORG }} --username=${{ secrets.ANYPOINT_USERNAME }} --password=${{ secrets.ANYPOINT_PASSWORD }}
+
