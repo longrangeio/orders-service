@@ -44,6 +44,7 @@ async fn orderById(data: web::Data<AppState>,id: web::Path<String>) -> impl Resp
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("Starting server...");
     let state = web::Data::new(AppState{ orders: Mutex::new(HashMap::<String,Order>::new()) });
     // run server
     HttpServer::new(move || {
@@ -53,7 +54,7 @@ async fn main() -> std::io::Result<()> {
             .service(orders)
             .service(orderById)
     })
-        .bind(("127.0.0.1", 8080))?
+        .bind(("0.0.0.0", 8080))?
         .run()
         .await
 }

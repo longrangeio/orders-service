@@ -12,3 +12,7 @@ serde_json = "1.0.91"
 chrono = "0.4.23"
 fake = {version = "2.5", features = ["derive", "http", "uuid", "chrono"] }
 rand = "0.8"
+
+[[bin]]
+name = "orders-service"
+path = "src/main.rs"
