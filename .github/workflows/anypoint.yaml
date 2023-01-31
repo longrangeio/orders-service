@@ -20,4 +20,3 @@ jobs:
       - run: npm install -g api-catalog-cli@latest
       - run: api-catalog create-descriptor
       - run: api-catalog publish-asset -d catalog.yaml --host=anypoint.mulesoft.com --organization=${{ secrets.ANYPOINT_ORG }} --username=${{ secrets.ANYPOINT_USERNAME }} --password=${{ secrets.ANYPOINT_PASSWORD }}
-
